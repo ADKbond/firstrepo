@@ -9,7 +9,6 @@
     />
     <div class="show-search-res-div">
       <div :key="result.id" v-for="result in searchresult">
-        {{ result.id }}
         <Searchres
           :result="result"
           :resimg="'https://image.tmdb.org/t/p/original' + result.backdrop_path"

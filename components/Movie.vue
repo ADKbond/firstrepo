@@ -10,7 +10,9 @@
         style="max-width: 20rem;"
         class="mb-2 movie-card"
       >
-        <div class="desc-container">{{ movie.overview }}</div>
+        <div :class="toggleDesc ? 'desc-box' : 'desc-container'">
+          {{ movie.overview }}
+        </div>
 
         <b-card-text>
           <h5 class="rating-container">
@@ -28,7 +30,7 @@
           href="#"
           variant="primary"
           class="card-btn"
-          @click="ViewDesc(movie)"
+          @click="ToggleDesc(movie)"
           >Movie Description</b-button
         >
       </b-card>
@@ -54,19 +56,20 @@ export default {
     this.toggleDesc = false;
   },
   methods: {
-    ViewDesc(movie) {
-      const descbox = document.querySelector(".desc-container");
+    ToggleDesc(movie) {
+      //   const descbox = document.querySelector(".desc-container");
 
-      if (this.toggleDesc === false) {
-        descbox.style.overflow = "scroll";
-        this.toggleDesc = true;
-      } else if (this.toggleDesc === true) {
-        descbox.style.overflow = "hidden";
-        descbox.style.textOverflow = "ellipsis";
-        this.toggleDesc = false;
-      }
-      console.log("this", this.toggleDesc);
-      console.log(movie.vote_average);
+      //   if (this.toggleDesc === false) {
+      //     descbox.style.overflow = "scroll";
+      //     this.toggleDesc = true;
+      //   } else if (this.toggleDesc === true) {
+      //     descbox.style.overflow = "hidden";
+      //     descbox.style.textOverflow = "ellipsis";
+      //     this.toggleDesc = false;
+      //   }
+      //   console.log("this", this.toggleDesc);
+      //   console.log(movie.vote_average);
+      this.toggleDesc = !this.toggleDesc;
     }
   }
 };
@@ -113,5 +116,16 @@ export default {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.desc-box {
+  display: inline-block;
+  width: 100%;
+  height: 5.15rem;
+  -webkit-line-clamp: 5;
+  display: -webkit-box;
+  line-height: 1;
+  -webkit-box-orient: vertical;
+  overflow: scroll;
+  text-overflow: scroll;
 }
 </style>

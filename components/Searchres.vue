@@ -13,9 +13,10 @@
       style="max-width: 20rem;"
       class="mb-2 movie-card"
     >
+      <div :class="toggleDesc ? 'desc-container' : 'desc-box'">
+        {{ result.overview }}
+      </div>
       <b-card-text class="card-text-element">
-        <p class="hell">hello</p>
-
         <h5 class="rating-container">
           Rating:
           <h5>
@@ -27,7 +28,7 @@
         </h5>
       </b-card-text>
 
-      <b-button variant="primary" class="card-btn" @click="Toggle(result.id)"
+      <b-button variant="primary" class="card-btn" @click="Toggle()"
         >Movie Description</b-button
       >
     </b-card>
@@ -40,14 +41,15 @@ export default {
     result: Object,
     resimg: String
   },
-  mounted() {
-    console.log("MOUNTED===>>", document.querySelector(".res-container"));
+  data() {
+    return {
+      toggleDesc: true
+    };
   },
+  mounted() {},
   methods: {
-    Toggle(id) {
-      const x = document.querySelector(".hell");
-      console.log("X->", x);
-      x.style.color = "purple";
+    Toggle() {
+      this.toggleDesc = !this.toggleDesc;
     }
   }
 };
@@ -70,5 +72,27 @@ export default {
 .rating-primary {
   display: inline;
   color: lightseagreen;
+}
+.desc-box {
+  display: inline-block;
+  width: 100%;
+  height: 5.15rem;
+  -webkit-line-clamp: 5;
+  display: -webkit-box;
+  line-height: 1;
+  -webkit-box-orient: vertical;
+  overflow: scroll;
+  text-overflow: scroll;
+}
+.desc-container {
+  display: inline-block;
+  width: 100%;
+  height: 5.15rem;
+  -webkit-line-clamp: 5;
+  display: -webkit-box;
+  line-height: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 </style>
